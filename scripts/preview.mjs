@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../dist/client/', import.meta.url));
 const port = Number(process.env.PORT || 4173);
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 try {
   await stat(path.join(root, 'index.html'));
 } catch {
@@ -31,9 +32,17 @@ http
       return;
     }
     try {
-      const pathname = decodeURIComponent(
+      let pathname = decodeURIComponent(
         new URL(req.url, 'http://localhost').pathname,
       );
+      if (basePath) {
+        if (pathname !== basePath && !pathname.startsWith(basePath + '/')) {
+          res.writeHead(404);
+          res.end('Not found');
+          return;
+        }
+        pathname = pathname.slice(basePath.length) || '/';
+      }
       let file = path.resolve(root, '.' + pathname);
       if (
         file !== path.resolve(root) &&
@@ -57,5 +66,5 @@ http
     }
   })
   .listen(port, '127.0.0.1', () =>
-    console.log(`Preview: http://127.0.0.1:${port}/`),
+    console.log(`Preview: http://127.0.0.1:${port}${basePath}/`),
   );

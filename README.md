@@ -9,6 +9,22 @@
 
 日本页面包含每日真实地图、8 家酒店（含备选）、13 个美食地点、21 张带来源的实景照片、固定导航及手机快捷导航。
 
+## GitHub Pages
+
+- 世界地图：https://boldline.github.io/traveling/
+- 日本行程：https://boldline.github.io/traveling/japan/
+
+使用公开仓库的免费 GitHub Pages 托管，网站可以公开访问。合并到 `main` 后，`.github/workflows/pages.yml` 会自动安装依赖、检查类型、构建并发布；PR 仅构建检查。发布进度见仓库 Actions，发布来源设置为 GitHub Actions。
+
+工作流根据 GitHub Pages 的 `base_path` 自动配置链接、照片及脚本路径。本地模拟项目路径构建：
+
+```bash
+NEXT_PUBLIC_BASE_PATH=/traveling npm run build
+NEXT_PUBLIC_BASE_PATH=/traveling npm run preview
+```
+
+原 Sites 构建无需设置这个环境变量，仍使用根路径。当前 Vinext `1.0.0-beta.5` 的预渲染请求遗漏 `basePath`，安装依赖时由 `scripts/patch-vinext-prerender.mjs` 应用精确兼容修复；升级该依赖时需重新评估并移除或更新补丁。
+
 ## 目录
 
 ```text
