@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import photos from '@/japan/lib/place-photos.json';
+import { sitePath } from '@/lib/site-path';
 type Photo = {
   src: string;
   width: number;
@@ -15,7 +16,7 @@ export default function PlacePhoto({ id }: { id: string }) {
   return (
     <figure className="place-photo">
       <Image
-        src={photo.src}
+        src={sitePath(photo.src)}
         alt={photo.caption}
         width={photo.width}
         height={photo.height}

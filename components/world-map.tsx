@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/japan/components/ui/button';
 import photos from '@/japan/lib/place-photos.json';
+import { sitePath } from '@/lib/site-path';
 
 // Fukuoka is represented by Hakata Station, the start/end hub of this trip.
 // Coordinate source: https://www.openstreetmap.org/way/72653571
@@ -44,7 +45,7 @@ export default function WorldMap() {
         window.location.hash,
       )
     ) {
-      window.location.replace('/japan/' + window.location.hash);
+      window.location.replace(sitePath('/japan/') + window.location.hash);
       return;
     }
     if (!container.current) return;
@@ -109,7 +110,7 @@ export default function WorldMap() {
         text.textContent = '2026.09.25 — 10.01 · 九州亲子 7 日';
         popup.appendChild(text);
         const link = document.createElement('a');
-        link.href = destination.href;
+        link.href = sitePath(destination.href);
         link.textContent = '打开日本旅行手册 ↗';
         popup.appendChild(link);
         const icon = L.divIcon({
@@ -240,7 +241,7 @@ export default function WorldMap() {
           <article className="atlas-trip-card">
             <figure>
               <Image
-                src={photos.miyako.src}
+                src={sitePath(photos.miyako.src)}
                 alt={photos.miyako.caption}
                 width={photos.miyako.width}
                 height={photos.miyako.height}
