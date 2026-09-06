@@ -424,6 +424,7 @@ export const days: Day[] = [
 ];
 export const hotels = [
   {
+    id: 'miyako',
     name: '都酒店博多',
     en: 'MIYAKO HOTEL HAKATA',
     jp: '都ホテル 博多',
@@ -446,6 +447,7 @@ export const hotels = [
     source: sources.miyako,
   },
   {
+    id: 'itsuki',
     name: '由布院别邸 树',
     en: 'YUFUIN BETTEI ITSUKI',
     jp: '由布院別邸 樹',
@@ -468,6 +470,7 @@ export const hotels = [
     source: sources.itsuki,
   },
   {
+    id: 'suginoi',
     name: '杉乃井酒店 · 宙馆',
     en: 'SUGINOI HOTEL · SORA KAN',
     jp: '杉乃井ホテル 宙館',
@@ -491,6 +494,7 @@ export const hotels = [
   },
 ];
 export type Food = {
+  id: string;
   name: string;
   jp: string;
   city: string;
@@ -504,6 +508,7 @@ export type Food = {
 };
 export const foods: Food[] = [
   {
+    id: 'issou',
     name: '博多一双 · 本店',
     jp: '博多一双 博多駅東本店',
     city: '福冈',
@@ -515,6 +520,7 @@ export const foods: Food[] = [
     priority: true,
   },
   {
+    id: 'shinshin',
     name: 'Shin Shin',
     jp: '博多らーめん Shin Shin',
     city: '福冈',
@@ -524,6 +530,7 @@ export const foods: Food[] = [
     query: 'Shin Shin 博多デイトス店',
   },
   {
+    id: 'toriden',
     name: 'とり田 · 博多本店',
     jp: '博多水炊き とり田',
     city: '福冈',
@@ -535,6 +542,7 @@ export const foods: Food[] = [
     priority: true,
   },
   {
+    id: 'yamanaka',
     name: 'やま中 · 博多店',
     jp: '博多もつ鍋 やま中 博多店',
     city: '福冈',
@@ -546,6 +554,7 @@ export const foods: Food[] = [
     tel: '+81922608517',
   },
   {
+    id: 'hirao',
     name: '平尾 · ACROS 福冈店',
     jp: '天麩羅処ひらお アクロス店',
     city: '福冈',
@@ -556,6 +565,7 @@ export const foods: Food[] = [
     tel: '+81927165511',
   },
   {
+    id: 'mentai',
     name: '元祖博多明太重',
     jp: '元祖博多めんたい重',
     city: '福冈',
@@ -566,6 +576,7 @@ export const foods: Food[] = [
     tel: '+81927257220',
   },
   {
+    id: 'shin',
     name: '由布まぶし 心 · 站前店',
     jp: '由布まぶし 心 由布院駅前店',
     city: '由布院',
@@ -578,6 +589,7 @@ export const foods: Food[] = [
     priority: true,
   },
   {
+    id: 'itsuki-dinner',
     name: '别邸树 · 旅馆晚餐',
     jp: '由布院別邸 樹',
     city: '由布院',
@@ -589,6 +601,7 @@ export const foods: Food[] = [
     priority: true,
   },
   {
+    id: 'steam',
     name: '地狱蒸工房 铁轮',
     jp: '地獄蒸し工房 鉄輪',
     city: '别府',
@@ -601,6 +614,7 @@ export const foods: Food[] = [
     priority: true,
   },
   {
+    id: 'okamoto',
     name: '岡本屋卖店',
     jp: '岡本屋売店',
     city: '别府',
@@ -610,6 +624,7 @@ export const foods: Food[] = [
     query: '岡本屋売店 別府',
   },
   {
+    id: 'kamesho',
     name: '亀正回转寿司',
     jp: '亀正くるくる寿司',
     city: '别府',
@@ -621,6 +636,7 @@ export const foods: Food[] = [
     priority: true,
   },
   {
+    id: 'amami',
     name: '甘味茶屋 · 别府店',
     jp: '別府甘味茶屋',
     city: '别府',
@@ -632,6 +648,7 @@ export const foods: Food[] = [
     tel: '+81977676024',
   },
   {
+    id: 'sora-dining',
     name: 'TERRACE & DINING SORA',
     jp: '杉乃井ホテル TERRACE & DINING SORA',
     city: '别府',

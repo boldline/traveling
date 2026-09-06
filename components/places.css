@@ -1,0 +1,262 @@
+.places-map {
+  margin: 0 0 26px;
+  scroll-margin-top: 105px;
+}
+.places-map .daily-map-heading {
+  padding: 20px 22px 0;
+}
+.places-map .daily-map-heading h3 {
+  font-size: 19px;
+}
+.places-map .daily-map-heading button {
+  font-size: 14px;
+  min-height: 40px;
+}
+.places-map-toolbar {
+  padding: 12px 22px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+.places-map-toolbar p {
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+.places-map-toolbar > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.places-map-toolbar button {
+  min-height: 40px;
+  font-size: 14px;
+  border: 1px solid #c8d8d2;
+  border-radius: 5px;
+  padding: 6px 12px;
+  background: #f8fbfa;
+  color: #28594d;
+}
+.places-map .daily-map-canvas {
+  height: 390px;
+}
+.places-map .map-stop-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 12px 22px;
+  gap: 0 20px;
+}
+.places-map .map-stop-list button > b {
+  width: 30px;
+  height: 26px;
+  border-radius: 5px;
+}
+.places-map .map-stop-list em {
+  font-size: 12px;
+}
+.places-map-key {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 15px 22px 0;
+  font-size: 14px;
+  color: #506d61;
+}
+.places-map-key > span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #205e51;
+}
+.places-map-key > .alternative-key {
+  margin-left: 12px;
+  background: #ab7126;
+}
+.place-marker {
+  height: 38px;
+  width: 38px;
+}
+.place-popup > a {
+  display: flex;
+  width: fit-content;
+}
+.place-photo {
+  margin: 0;
+  width: 100%;
+}
+.place-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: #e4e9e7;
+}
+.place-photo img.photo-contain {
+  object-fit: contain;
+  background: #f6f8f6;
+}
+.place-photo figcaption small {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  color: #6d8077;
+}
+.place-photo figcaption {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 14px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #5c756b;
+  background: #f6f8f6;
+  border-bottom: 1px solid #e2e9e4;
+}
+.place-photo figcaption a {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+  min-height: 25px;
+  color: #315b4d;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.hotel-card,
+.food-card,
+.alternative-hotel {
+  scroll-margin-top: 105px;
+}
+.hotel-card:target,
+.food-card:target,
+.alternative-hotel:target {
+  outline: 3px solid #9abdb0;
+  outline-offset: 3px;
+}
+.place-location-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: 0;
+  color: var(--primary);
+  font-size: 14px;
+  min-height: 40px;
+  padding: 0;
+  cursor: pointer;
+}
+.place-address {
+  color: #60796e;
+  font-size: 13px;
+  margin-top: 15px;
+}
+.food-card {
+  padding: 0;
+  overflow: hidden;
+  align-items: stretch;
+}
+.food-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 22px;
+}
+.food-card-top > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.food-card-top .food-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  background: #e7f0ea;
+  color: #205b4c;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 600;
+}
+.alternative-hotels-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.alternative-hotel {
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  overflow: hidden;
+  min-width: 0;
+}
+.alternative-hotel-body {
+  padding: 15px;
+}
+.alternative-hotel-body > span {
+  display: block;
+  font-size: 13px;
+  color: #8b672e;
+  margin-bottom: 5px;
+}
+.alternative-hotel h3 {
+  font-size: 17px;
+  overflow-wrap: anywhere;
+}
+.alternative-hotel-body > p {
+  font-size: 14px;
+  margin: 8px 0 4px;
+  line-height: 1.8;
+}
+.alternative-hotel .link-row {
+  gap: 8px 14px;
+}
+.photo-note {
+  font-size: 13px;
+  color: var(--muted-foreground);
+  margin-top: 15px;
+  line-height: 1.8;
+}
+@media (max-width: 900px) {
+  .places-map .map-stop-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .alternative-hotels-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .places-map .daily-map-heading {
+    padding: 16px 14px 0;
+  }
+  .places-map .daily-map-heading h3 {
+    font-size: 17px;
+  }
+  .places-map-toolbar {
+    padding: 10px 14px 14px;
+  }
+  .places-map .daily-map-canvas {
+    height: 350px;
+  }
+  .places-map .map-stop-list {
+    grid-template-columns: 1fr;
+    padding: 8px 14px;
+  }
+  .places-map-key {
+    padding-left: 14px;
+  }
+  .food-card {
+    padding: 0;
+  }
+  .food-card-body {
+    padding: 18px;
+  }
+  .alternative-hotels-grid {
+    grid-template-columns: 1fr;
+  }
+  .place-photo figcaption {
+    padding: 9px 12px;
+  }
+}

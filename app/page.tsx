@@ -2,6 +2,13 @@
 import { useState, useSyncExternalStore } from 'react';
 import Image from 'next/image';
 import DayRouteMap from '@/components/day-route-map';
+import PlacesMap, { type MapFocus } from '@/components/places-map';
+import PlacePhoto from '@/components/place-photo';
+import {
+  alternativeHotels,
+  hotelMapPlaces,
+  foodMapPlaces,
+} from '@/lib/place-data';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import {
   Table,
@@ -207,6 +214,8 @@ function readDay() {
   return i >= 0 ? String(i) : '0';
 }
 export default function Home() {
+  const [hotelFocus, setHotelFocus] = useState<MapFocus>(null);
+  const [foodFocus, setFoodFocus] = useState<MapFocus>(null);
   const initialDay = useSyncExternalStore(subscribeDay, readDay, () => '0');
   const [chosenDay, setChosenDay] = useState<string | null>(null);
   const selected = chosenDay ?? initialDay;
@@ -333,16 +342,23 @@ export default function Home() {
               空房、房价与餐食均以订单为准
             </span>
           </div>
+          <PlacesMap
+            id="hotel-map"
+            title="酒店位置，一张图看清"
+            places={hotelMapPlaces}
+            focus={hotelFocus}
+          />
           <div className="hotel-grid">
             {hotels.map((h, i) => (
-              <article className="hotel-card" key={h.name}>
+              <article className="hotel-card" key={h.name} id={'hotel-' + h.id}>
                 <div className="hotel-top">
-                  <span className="hotel-number">0{i + 1}</span>
+                  <span className="hotel-number">H{i + 1}</span>
                   <span>
                     {h.city}
                     <small>{h.badge}</small>
                   </span>
                 </div>
+                <PlacePhoto id={h.id} />
                 <div className="hotel-body">
                   <div className="hotel-dates">
                     {h.dates.split('\n').map((d) => (
@@ -368,8 +384,19 @@ export default function Home() {
                     <Out href={h.source}>查看对应官方说明</Out>
                   </details>
                   <div className="hotel-actions">
+                    <a
+                      className="place-location-button"
+                      href="#hotel-map"
+                      onClick={() => setHotelFocus({ id: h.id })}
+                    >
+                      <MapPin size={15} />
+                      地图定位
+                    </a>
                     <NavLink query={h.jp} />
                     <Out href={h.url}>官网 / 订房</Out>
+                  </div>
+                  <div className="place-address" lang="ja">
+                    {h.address}
                   </div>
                   {h.tel && (
                     <a className="phone-link" href={'tel:' + h.tel}>
@@ -393,18 +420,40 @@ export default function Home() {
               <b>别府：</b>ANA InterContinental Beppu Resort &
               Spa；偏安静度假，杉乃井更侧重孩子玩水。这些是原稿备选，房价与儿童政策未逐项核实。
             </p>
-            <div className="link-row">
-              {[
-                'The Ritz-Carlton Fukuoka',
-                'ONE FUKUOKA HOTEL',
-                '亀の井別荘 由布院',
-                '山荘 無量塔',
-                'ANA InterContinental Beppu Resort Spa',
-              ].map((q) => (
-                <NavLink key={q} query={q} label={q} />
+            <div className="alternative-hotels-grid">
+              {alternativeHotels.map((h, i) => (
+                <article
+                  className="alternative-hotel"
+                  id={'hotel-' + h.id}
+                  key={h.id}
+                >
+                  <PlacePhoto id={h.id} />
+                  <div className="alternative-hotel-body">
+                    <span>
+                      A{i + 1} · {h.city} · 备选酒店
+                    </span>
+                    <h3>{h.name}</h3>
+                    <p>{h.note}</p>
+                    <div className="link-row">
+                      <a
+                        className="place-location-button"
+                        href="#hotel-map"
+                        onClick={() => setHotelFocus({ id: h.id })}
+                      >
+                        <MapPin size={15} />
+                        地图定位
+                      </a>
+                      <NavLink query={h.jp} />
+                      <Out href={h.url}>官网</Out>
+                    </div>
+                  </div>
+                </article>
               ))}
             </div>
           </details>
+          <p className="photo-note">
+            照片展示酒店实景与部分房型，不代表已订房型。每张照片均附来源，入住权益以订单为准。
+          </p>
         </section>
         <section className="major-section" id="food">
           <div className="section-heading">
@@ -418,6 +467,12 @@ export default function Home() {
               标记“优先”的 6 味来自原方案
             </span>
           </div>
+          <PlacesMap
+            id="food-map"
+            title="想吃的店，都在这里"
+            places={foodMapPlaces}
+            focus={foodFocus}
+          />
           <div className="food-intro">
             <Utensils size={19} />
             <p>
@@ -441,36 +496,59 @@ export default function Home() {
                 {foods
                   .filter((f) => f.city === city)
                   .map((f) => (
-                    <article key={f.name} className="food-card">
-                      <div className="food-card-top">
-                        <span>{f.when}</span>
-                        {f.priority && <b>优先尝味</b>}
-                      </div>
-                      <h3>{f.name}</h3>
-                      <span className="jp-name" lang="ja">
-                        {f.jp}
-                      </span>
-                      <p className="dish">{f.dish}</p>
-                      <p className="food-note">{f.note}</p>
-                      <div className="food-links">
-                        <NavLink query={f.query} />
-                        {f.url && <Out href={f.url}>官方信息</Out>}
-                        {f.tel && (
+                    <article
+                      key={f.name}
+                      className="food-card"
+                      id={'food-' + f.id}
+                    >
+                      <PlacePhoto id={f.id} />
+                      <div className="food-card-body">
+                        <div className="food-card-top">
+                          <span>
+                            <span className="food-number">
+                              {foodMapPlaces.find((p) => p.id === f.id)?.number}
+                            </span>
+                            {f.when}
+                          </span>
+                          {f.priority && <b>优先尝味</b>}
+                        </div>
+                        <h3>{f.name}</h3>
+                        <span className="jp-name" lang="ja">
+                          {f.jp}
+                        </span>
+                        <p className="dish">{f.dish}</p>
+                        <p className="food-note">{f.note}</p>
+                        <div className="food-links">
                           <a
-                            className="text-link"
-                            href={'tel:' + f.tel}
-                            aria-label={'拨打' + f.name + '电话'}
+                            className="place-location-button"
+                            href="#food-map"
+                            onClick={() => setFoodFocus({ id: f.id })}
                           >
-                            <Phone size={14} />
-                            电话
+                            <MapPin size={15} />
+                            地图定位
                           </a>
-                        )}
+                          <NavLink query={f.query} />
+                          {f.url && <Out href={f.url}>官方信息</Out>}
+                          {f.tel && (
+                            <a
+                              className="text-link"
+                              href={'tel:' + f.tel}
+                              aria-label={'拨打' + f.name + '电话'}
+                            >
+                              <Phone size={14} />
+                              电话
+                            </a>
+                          )}
+                        </div>
                       </div>
                     </article>
                   ))}
               </div>
             </div>
           ))}
+          <p className="photo-note">
+            照片为对应店铺的门店、用餐空间或料理实拍；菜品随季节及套餐变化，照片不代表当天供应。
+          </p>
         </section>
         <section className="major-section" id="transport">
           <div className="section-heading">
