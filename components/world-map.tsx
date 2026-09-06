@@ -12,8 +12,8 @@ import {
   MapPin,
   RotateCw,
 } from 'lucide-react';
-import { Button } from '@/japan/components/ui/button';
-import photos from '@/japan/lib/place-photos.json';
+import { Button } from '@/japan/fukuoka/components/ui/button';
+import photos from '@/japan/fukuoka/lib/place-photos.json';
 import { sitePath } from '@/lib/site-path';
 
 // Fukuoka is represented by Hakata Station, the start/end hub of this trip.
@@ -22,7 +22,7 @@ const destination = {
   lat: 33.5900413,
   lng: 130.4199026,
   name: '日本 · 福冈',
-  href: '/japan/',
+  href: '/japan/fukuoka/',
 };
 const worldBounds: [[number, number], [number, number]] = [
   [-60, -180],
@@ -45,7 +45,7 @@ export default function WorldMap() {
         window.location.hash,
       )
     ) {
-      window.location.replace(sitePath('/japan/') + window.location.hash);
+      window.location.replace(sitePath('/japan/fukuoka/') + window.location.hash);
       return;
     }
     if (!container.current) return;
@@ -111,7 +111,7 @@ export default function WorldMap() {
         popup.appendChild(text);
         const link = document.createElement('a');
         link.href = sitePath(destination.href);
-        link.textContent = '打开日本旅行手册 ↗';
+        link.textContent = '打开福冈旅行手册 ↗';
         popup.appendChild(link);
         const icon = L.divIcon({
           className: 'atlas-marker-shell',
@@ -169,8 +169,8 @@ export default function WorldMap() {
             TRAVELING<small>我的旅行地图</small>
           </span>
         </Link>
-        <Link className="atlas-header-link" href={destination.href}>
-          日本旅行手册
+        <Link className="atlas-header-link" href="/japan/">
+          日本攻略目录
           <ArrowUpRight size={17} />
         </Link>
       </header>
@@ -269,7 +269,7 @@ export default function WorldMap() {
                 2026.09.25 — 10.01<span>7 天 6 晚</span>
               </p>
               <Link className="atlas-open-trip" href={destination.href}>
-                打开日本旅行手册
+                打开福冈旅行手册
                 <ArrowUpRight size={20} />
               </Link>
             </div>

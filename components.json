@@ -5,7 +5,7 @@
   "tsx": true,
   "tailwind": {
     "config": "",
-    "css": "japan/app/globals.css",
+    "css": "japan/fukuoka/app/globals.css",
     "baseColor": "neutral",
     "cssVariables": true,
     "prefix": ""
@@ -13,11 +13,11 @@
   "iconLibrary": "lucide",
   "rtl": false,
   "aliases": {
-    "components": "@/japan/components",
-    "utils": "@/japan/lib/utils",
-    "ui": "@/japan/components/ui",
-    "lib": "@/japan/lib",
-    "hooks": "@/japan/hooks"
+    "components": "@/japan/fukuoka/components",
+    "utils": "@/japan/fukuoka/lib/utils",
+    "ui": "@/japan/fukuoka/components/ui",
+    "lib": "@/japan/fukuoka/lib",
+    "hooks": "@/japan/fukuoka/hooks"
   },
   "menuColor": "default",
   "menuAccent": "subtle",
