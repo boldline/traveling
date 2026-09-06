@@ -36,3 +36,7 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+
+# Generated assets copied from japan/public
+/public/japan/
+*.tsbuildinfo
