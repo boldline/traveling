@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import 'leaflet/dist/leaflet.css';
+import '@/components/day-route-map.css';
 export const metadata: Metadata = {
   icons: { icon: '/favicon.svg' },
   title: '九州慢旅 · 7日亲子旅行手册',

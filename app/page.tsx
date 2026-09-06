@@ -1,6 +1,7 @@
 'use client';
 import { useState, useSyncExternalStore } from 'react';
 import Image from 'next/image';
+import DayRouteMap from '@/components/day-route-map';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import {
   Table,
@@ -104,6 +105,7 @@ function DayView({ day, index }: { day: Day; index: number }) {
           <p>{day.subtitle}</p>
           <div className="theme-line">{day.theme}</div>
         </div>
+        <DayRouteMap dayIndex={index} />
         <div className="timeline">
           {day.stops.map((s, i) => (
             <article key={s.title}>
@@ -314,7 +316,7 @@ export default function Home() {
             </TabsList>
             {days.map((day, i) => (
               <TabsContent key={day.date} value={String(i)}>
-                <DayView day={day} index={i} />
+                {i === Number(selected) && <DayView day={day} index={i} />}
               </TabsContent>
             ))}
           </Tabs>
